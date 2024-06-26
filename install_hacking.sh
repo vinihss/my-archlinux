@@ -50,3 +50,9 @@ sudo pacman -S --noconfirm openvas
 
 # Print completion message
 echo "Hacking tools installation completed."
+
+
+~  sudo airmon-ng start wlan0
+ sudo airodump-ng wlan0mo
+
+ sudo airodump-ng wlan0mo -C channel --bssid mac

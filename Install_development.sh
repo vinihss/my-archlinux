@@ -10,9 +10,6 @@ fi
 echo "Updating the system..."
 pacman -Syu --noconfirm
 
-# Install essential packages
-echo "Installing essential packages..."
-pacman -S --noconfirm git python python-pip nodejs npm yarn go openvpn terminator zsh firefox openssh neovim curl jq
 
 # Install yay if not installed
 if ! command -v yay &> /dev/null; then
@@ -27,6 +24,75 @@ fi
 # Install AUR packages
 echo "Installing AUR packages..."
 yay -S --noconfirm jetbrains-toolbox google-chrome brave-bin spotify postman-bin rocketchat-desktop nordvpn-bin
+#!/bin/bash
+
+# Ensure the script is run as root
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root"
+   exit 1
+fi
+
+# Update the system
+echo "Updating the system..."
+sudo pacman -Syu --noconfirm
+
+# Install IDEs from JetBrains (via Toolbox)
+echo "Installing JetBrains Toolbox..."
+sudo pacman -S --noconfirm jetbrains-toolbox
+
+# Install Visual Studio Code
+echo "Installing Visual Studio Code..."
+sudo pacman -S --noconfirm code
+
+# Install PHP and common extensions
+echo "Installing PHP and extensions..."
+sudo pacman -S --noconfirm php php-apache php-pgsql php-sqlite php-curl php-intl php-mbstring php-gd php-imagick
+
+# Install Python and pip
+echo "Installing Python and pip..."
+sudo pacman -S --noconfirm python python-pip
+
+# Install Go
+echo "Installing Go..."
+sudo pacman -S --noconfirm go
+
+# Install Node.js and npm
+echo "Installing Node.js and npm..."
+sudo pacman -S --noconfirm nodejs npm
+
+# Install PostgreSQL
+echo "Installing PostgreSQL..."
+sudo pacman -S --noconfirm postgresql
+
+# Install MariaDB
+echo "Installing MariaDB..."
+sudo pacman -S --noconfirm mariadb
+
+# Install Docker
+echo "Installing Docker..."
+sudo pacman -S --noconfirm docker
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+
+# Install Docker Compose
+echo "Installing Docker Compose..."
+sudo pacman -S --noconfirm docker-compose
+
+# Install pgAdmin
+echo "Installing pgAdmin..."
+sudo pacman -S --noconfirm pgadmin4
+
+# Install DBeaver
+echo "Installing DBeaver..."
+sudo pacman -S --noconfirm dbeaver
+
+# Install Git
+echo "Installing Git..."
+sudo pacman -S --noconfirm git
+
+# Print completion message
+echo "Development tools installation completed."
 
 # Install general API development tools
 echo "Installing general API development tools..."
