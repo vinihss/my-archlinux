@@ -2,11 +2,10 @@
 
 # Nome do usuário principal
 USER_NAME="vinicius"
-PASSWORD="minhasenha"
+PASSWORD="1234567"
 HOSTNAME="meuhost"
-DISK="/dev/sdX"  # Substitua por seu disco (por exemplo, /dev/sda)
-GITHUB_USER="vinihss"
-GIST_NAME="archlinux_personal_add_install.sh"
+DISK="/dev/sda"  # Substitua por seu disco (por exemplo, /dev/sda)
+EXTRA_CONFIG_SCRIPT="https://raw.githubusercontent.com/vinihss/my-archlinux/main/install.sh"
 
 # Verificar se o script está sendo executado como root
 if [[ $EUID -ne 0 ]]; then
@@ -95,8 +94,9 @@ EOL
 
 # Verificar se está no Arch Linux e executar o script adicional do GitHub
 if [ -f /etc/arch-release ]; then
-    echo "Baixando e executando o script adicional do GitHub para Arch Linux..."
-   # sudo -u $USER_NAME bash -c "curl -o /home/$USER_NAME/$GIST_NAME https://gist.githubusercontent.com/$GITHUB_USER/$GIST_NAME/raw && bash /home/$USER_NAME/$GIST_NAME"
+    echo "Baixando e executando o script adicional para Arch Linux..."
+   # sudo -u $USER_NAME bash -c "curl -o EXTRA_CONFIG_SCRIPT"
+   
 else
     echo "Nehnhum script específico da distribuição para instalação"
 fi
